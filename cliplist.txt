@@ -1,5 +1,2 @@
-dir:Uster\Documents\Python>
-odir:C
-nicl:load
-list:C
-pippo:/r/AskReddit/
+facebook:melon musk
+money:Jeff Bezos
