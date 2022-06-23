@@ -10,7 +10,7 @@ print('''
                                                  
 ''')
 
-key = "e47efe1099567448b92eb3c9c12b5ae0"
+key = "{YOUR KEY}"
 location = input('city name: ')
 
 response = rq.get(f"http://api.openweathermap.org/data/2.5/weather?appid={key}&q={location}").json()
