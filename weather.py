@@ -8,5 +8,3 @@ print(f"""
 Weather: {response['weather'][0]['description']}
 Temperature: from {round(response['main']['temp_min']/10)} to {round(response['main']['temp_max']/10)}
 """)
-#print('Weather:', response['weather'][0]['description'])
-#print('Temperature:', 'from', round(response['main']['temp_min']/10), 'to', round(response['main']['temp_max']/10))
