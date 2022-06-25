@@ -31,24 +31,39 @@ for example:
     $ python weather_api.py -city berlin -forecast 2 
     ''')
 elif '-city' in argument:
-    city = argument[argument.index('-city')+1]
-    querystring = {"q":{city},"days":"3"}
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
-    if '-forecast' in argument:
-        day = int(argument[argument.index('-forecast')+1])
-        print(f"""
+    if len(argument) >= 3:
+        city = argument[argument.index('-city')+1]
+        querystring = {"q":{city},"days":"3"}
+        request = requests.request("GET", url, headers=headers, params=querystring)
+        response = request.json()
+        if int(request.status_code) == 200:
+            if '-forecast' in argument:
+                if len(argument) >= 5:
+                    day = int(argument[argument.index('-forecast')+1])
+                    if day <= 2 and day >= 0:
+                        print(f"""
+Location: {response["location"]["name"]} in {response["location"]["country"]}
 Condition: {response["forecast"]["forecastday"][day]["day"]["condition"]["text"]}
 Temperature: from {response["forecast"]["forecastday"][day]["day"]["mintemp_c"]}°C to {response["forecast"]["forecastday"][day]["day"]["maxtemp_c"]}°C
 Max Wind: {response["forecast"]["forecastday"][day]["day"]["mintemp_c"]}kph
 Precipitation: {response["forecast"]["forecastday"][day]["day"]["totalprecip_mm"]}mm
 Chance of Rain: {response["forecast"]["forecastday"][day]["day"]["daily_chance_of_rain"]}%
-        """)
-    else:
-        print(f"""
+                        """)
+                    else:
+                        print('invalid argument:\nforecast only possible for 0-2 days')
+                else:
+                    print('invalid argument:\nargument can\'t be empty')
+            else:
+                print(f"""
+Location: {response["location"]["name"]} in {response["location"]["country"]}
 Condition: {response["current"]["condition"]["text"]}
 Temperature: {response["current"]["temp_c"]}°C
 Wind: {response["current"]["wind_kph"]}kph
 Precipitation: {response["current"]["precip_mm"]}mm
-        """)
+                """)
+        else:
+            print('invalid argument:\nplease provide a valid city name')
+    else:
+        print('invalid argument:\nargument can\'t be empty')    
 else:
     print('invalid argument:\n--help for help')
