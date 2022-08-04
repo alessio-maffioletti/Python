@@ -1,5 +1,4 @@
 import requests
-import json
 import sys
 
 argument = sys.argv
@@ -26,7 +25,7 @@ To get started type --help as argument to print the help screen:
 $ python weather_api.py --help
     """)
 elif '--help' in argument:
-    print('''following arguments are available:\n-city        provide the city name\n-forecast    number of days to forecast(0-2). Will return current weather if not providet \n--help       print this screen
+    print('''following arguments are available:\n-city        provide the city name\n-forecast    number of days to forecast(0-2). Will return current weather if not provided \n--help       print this screen
 for example: 
     $ python weather_api.py -city berlin -forecast 2 
     ''')
@@ -39,8 +38,8 @@ elif '-city' in argument:
         if int(request.status_code) == 200:
             if '-forecast' in argument:
                 if len(argument) >= 5:
-                    day = int(argument[argument.index('-forecast')+1])
-                    if day <= 2 and day >= 0:
+                    if int(argument[argument.index('-forecast')+1]) <= 2 and int(argument[argument.index('-forecast')+1]) >= 0:
+                        day = int(argument[argument.index('-forecast')+1])
                         print(f"""
 Location: {response["location"]["name"]} in {response["location"]["country"]}
 Condition: {response["forecast"]["forecastday"][day]["day"]["condition"]["text"]}
