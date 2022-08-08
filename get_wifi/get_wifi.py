@@ -1,5 +1,4 @@
 import os
-import smtplib
 
 raw_command = str(os.popen('netsh wlan show profiles').read())
 #define all lists and dictionaries
