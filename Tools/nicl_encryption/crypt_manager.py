@@ -60,7 +60,7 @@ class decrypt:
 class generate:
     def main(output):
         #define character to use
-        chars = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+}{:?><-=[]|;/.,"
+        chars = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+}{:?><=[]|;/.,"
         
         #make character list
         char_list = []
