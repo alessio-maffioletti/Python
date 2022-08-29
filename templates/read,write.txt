@@ -1,0 +1,5 @@
+with open('filename', 'w+') as f:
+    f.write("string")
+
+with open('filename', 'r') as f:
+    x = f.read()
