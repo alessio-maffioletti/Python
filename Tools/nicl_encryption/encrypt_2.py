@@ -8,7 +8,7 @@ def main():
     args = parser.parse_args()
     
     #make key readable
-    key = [] #key = "qwertyuipasdlkjfhgvbncmxz5674398201"
+    key = []
     for char in args.key:
         key.append(char)
     
