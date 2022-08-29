@@ -2,6 +2,22 @@ import sys
 import argparse as arg
 import random
 
+intro = """
+                                                                                                                                                           
+                                                                                                                                                           
+                                                   ,d                                                                                                      
+                                                   88                                                                                                      
+ ,adPPYba,  8b,dPPYba,  8b       d8  8b,dPPYba,  MM88MMM     88,dPYba,,adPYba,   ,adPPYYba,  8b,dPPYba,   ,adPPYYba,   ,adPPYb,d8   ,adPPYba,  8b,dPPYba,  
+a8"     ""  88P'   "Y8  `8b     d8'  88P'    "8a   88        88P'   "88"    "8a  ""     `Y8  88P'   `"8a  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8  
+8b          88           `8b   d8'   88       d8   88        88      88      88  ,adPPPPP88  88       88  ,adPPPPP88  8b       88  8PP"""""""  88          
+"8a,   ,aa  88            `8b,d8'    88b,   ,a8"   88,       88      88      88  88,    ,88  88       88  88,    ,88  "8a,   ,d88  "8b,   ,aa  88          
+ `"Ybbd8"'  88              Y88'     88`YbbdP"'    "Y888     88      88      88  `"8bbdP"Y8  88       88  `"8bbdP"Y8   `"YbbdP"Y8   `"Ybbd8"'  88          
+                            d8'      88                                                                                aa,    ,88                          
+                           d8'       88                                                                                 "Y8bbdP"                           
+Python encryption and decryption system.
+    \"python3 crypt_manager.py --help\" to get started
+"""
+
 class encrypt:
     def main(keyfile, msg):
         #make key a list
@@ -44,7 +60,7 @@ class decrypt:
 class generate:
     def main(output):
         #define character to use
-        chars = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%$^&*()_+}{|"
+        chars = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+}{:?><-=[]|;/.,"
         
         #make character list
         char_list = []
@@ -73,6 +89,8 @@ def error(type):
     exit()
 
 def main():
+    if len(sys.argv)==1:
+        print(intro)
     parser = arg.ArgumentParser()
     parser.add_argument('option', help="option to use: generate, encrypt, decrypt")
     parser.add_argument('--message', help="message to encrypt/decrypt")
