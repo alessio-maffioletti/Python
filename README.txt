@@ -14,3 +14,7 @@
                                                          
 This Folder contains my Python practice Files.
 Feel free to use them.
+
+Projects to check out: 
+	crypt_manager	Tools/nicl_encryption/crypt_manager.py
+	Weather API		Tools/weather_API/weather_api_2.py
