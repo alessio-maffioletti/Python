@@ -37,7 +37,6 @@ class decrypt:
         alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
         final = ""
         for char in msg:
-            #print(key.index(char))
         #convert indexes into decrypted message with alphabet
             final += alphabet[int(key.index(char))]
         print(final)
@@ -60,7 +59,7 @@ class generate:
         for char in char_list:
             key += char
         
-        #output key into file or terminal
+        #output key into file
         
         if output is not None:
             with open(f'{output}', 'w+') as f:
@@ -69,6 +68,7 @@ class generate:
             print(f"\"{key}\"")
 
 def error(type):
+    #print the not provided argument and exit
     print(f"please provide {type} argument")
     exit()
 
@@ -81,15 +81,19 @@ def main():
     args = parser.parse_args()
     #call encrypt option and pass given arguments
     if args.option == "encrypt":
+        #check if necessary arguments were provided and call error func. if not
         assert args.message != None, error("message")
         assert args.keyfile != None, error("keyfile")
         encrypt.main(args.keyfile, args.message)
     #call decrypt options and pass arguments
     elif args.option == "decrypt":
+        #check if necessary arguments were provided and call error func. if not
         assert args.message != None, error("message")
         assert args.keyfile != None, error("keyfile")
         decrypt.main(args.keyfile, args.message)
+    #call generate options arguments
     elif args.option == "generate":
+        #check if necessary arguments were provided and call error func. if not
         assert args.output != None, error("output")
         generate.main(args.output)
     else:
