@@ -4,11 +4,11 @@ import argparse as arg
 def main():
     parser = arg.ArgumentParser()
     parser.add_argument('msg', help = "message to encrypt", type=str)
-    parser.add_argument('-key', help = "key for encryption")
+    parser.add_argument('key', help = "key for encryption")
     args = parser.parse_args()
     
     #make key readable
-    key = []
+    key = [] #key = "qwertyuipasdlkjfhgvbncmxz5674398201"
     for char in args.key:
         key.append(char)
     
@@ -19,10 +19,10 @@ def main():
         indexes.append(index_list.index(char))
     
     #convert indexes to encrypted message
-    converted = []
+    converted = ""
     for index in indexes:
-        converted.append(key[index])
-    print(converted)
+        converted += key[index]
+    print(f"\"{converted}\"")
     
 if __name__ == "__main__":
     sys.exit(main())
