@@ -21,6 +21,8 @@ Python encryption and decryption system.
     \"python3 crypt_manager.py --help\" to get started
 """
 
+char_list = list("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!%$&\'\"()*+,-./:;<=>?@[\]^_{|}~ ")
+
 class encrypt:
     def main(keyfile, msg):
         #make key a list
@@ -31,16 +33,15 @@ class encrypt:
             key.append(char)
 
         #convert message to indexes
-        index_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
         indexes = []
         for char in msg:
-            indexes.append(index_list.index(char))
+            indexes.append(char_list.index(char))
         
         #convert indexes to encrypted message
         converted = ""
         for index in indexes:
             converted += key[index]
-        print(f"\"{converted}\"")
+        print(f"\'{converted}\'")
 
 class decrypt:
     def main(keyfile, msg):
@@ -53,23 +54,14 @@ class decrypt:
                 key.append(char)
 
         #convert encrypted message to list of indexes of the key
-        alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
         final = ""
         for char in msg:
         #convert indexes into decrypted message with alphabet
-            final += alphabet[int(key.index(char))]
+            final += char_list[int(key.index(char))]
         print(final)
 
 class generate:
     def main(output):
-        #define character to use
-        chars = "abcdefghijklmnopqrstuvwxyz1234567890!@%^&*()_+}{:?><=[]|;/.,"
-        
-        #make character list
-        char_list = []
-        for char in chars:
-            char_list.append(char)
-        
         #shuffle list
         random.shuffle(char_list)
         
@@ -100,18 +92,21 @@ def main():
     parser.add_argument('--keyfile', help="keyfile used in encryption and decryption")
     parser.add_argument('--output', help="output file used in generation")
     args = parser.parse_args()
+    
     #call encrypt option and pass given arguments
     if args.option == "encrypt":
         #check if necessary arguments were provided and call error func. if not
         assert args.message != None, error("message")
         assert args.keyfile != None, error("keyfile")
         encrypt.main(args.keyfile, args.message)
+    
     #call decrypt options and pass arguments
     elif args.option == "decrypt":
         #check if necessary arguments were provided and call error func. if not
         assert args.message != None, error("message")
         assert args.keyfile != None, error("keyfile")
         decrypt.main(args.keyfile, args.message)
+    
     #call generate options arguments
     elif args.option == "generate":
         #check if necessary arguments were provided and call error func. if not
