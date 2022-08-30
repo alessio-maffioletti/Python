@@ -21,16 +21,14 @@ Python encryption and decryption system.
     \"python3 crypt_manager.py --help\" to get started
 """
 
-char_list = list("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!%$&\'\"()*+,-./:;<=>?@[\]^_{|}~ ")
+char_list = list("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!%$&()*+,-./:;<=>?@[\]^_{|}~ ")
 
 class encrypt:
     def main(keyfile, msg):
         #make key a list
         key = []
         with open(keyfile, 'r') as f:
-            raw_key = f.read()
-        for char in raw_key:
-            key.append(char)
+            key = list(f.read())
 
         #convert message to indexes
         indexes = []
@@ -47,11 +45,8 @@ class decrypt:
     def main(keyfile, msg):
         #make key a list
         key = []
-        if keyfile is not None:
-            with open(keyfile, 'r') as f:
-                raw_key = f.read()
-            for char in raw_key:
-                key.append(char)
+        with open(keyfile, 'r') as f:
+            key = list(f.read())
 
         #convert encrypted message to list of indexes of the key
         final = ""
@@ -71,12 +66,8 @@ class generate:
             key += char
         
         #output key into file
-        
-        if output is not None:
-            with open(f'{output}', 'w+') as f:
-                f.write(key)
-        else:
-            print(f"\"{key}\"")
+        with open(f'{output}', 'w+') as f:
+            f.write(key)
 
 def error(type):
     #print the not provided argument and exit
