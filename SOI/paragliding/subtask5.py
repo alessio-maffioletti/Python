@@ -1,16 +1,16 @@
-
 def check_next_pos(list, index):
-    highest = 0
-
+    highest = 0 
     #takes current place and loops through remaining indexes in the list
     for next in range(1, len(list)-index):
-        #checks if current places height is higher then the next places height
-        if index+next <= len(list) and int(list[index].height) > int(list[index+next].height):
-            #adds the diffrence of the two places to the variable "highest"
+        if next == len(list)-1:
             highest = abs(int(list[index].pos) - int(list[index+next].pos))
-        #breaks the loop if its not the case to avoid errors
-        else:
             break
+        #checks if current places height is higher then the next places height
+        if int(list[index].height) < int(list[index+next].height):
+            #adds the diffrence of the two places to the variable "highest"
+            highest = abs(int(list[index].pos) - int(list[index+next-1].pos))
+            break
+        #breaks the loop if its not the case to avoid errors
 
     
     return highest
