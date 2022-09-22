@@ -38,7 +38,7 @@ def calc(place_num, positions, heights, repeats):
 
 
     p = []
-    final = ""
+    final = 0
 
     #Create object inside class "Places" for every place_num
     for x in range(int(place_num)):
@@ -52,9 +52,9 @@ def calc(place_num, positions, heights, repeats):
 
         #add higher value to the end result
         if next_neg > next_pos:
-            final += str(next_neg) + ' '
+            final += int(next_neg)
         else:
-            final += str(next_pos) + ' '
+            final += int(next_pos)
     #print end result
     print(f"Case #{repeats}: {final}")
 
