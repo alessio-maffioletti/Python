@@ -36,13 +36,9 @@ def calc(place_num, positions, heights, repeats):
             self.pos = pos
             self.height = height
 
-
-    p = []
-    final = 0
-
     #Create object inside class "Places" for every place_num
-    for x in range(int(place_num)):
-        p.append(Places(positions[x], heights[x]))
+    p = [Places(positions[x], heights[x]) for x in range(int(place_num))]
+    final = 0
 
     for place in range(place_num):
         #check next positive highest place with function "check_next_pos"
