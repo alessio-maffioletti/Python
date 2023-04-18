@@ -10,4 +10,4 @@ with open('even_odd.py', 'w+') as f:
         else:
             #f.write(f"elif number == {i+1}:\n")
             f.write("    print('odd')\n")
-            #make a for loop
+            
